@@ -1,9 +1,8 @@
 import { Router } from "express";
 const router = Router();
+import {getPosts} from '../controllers/posts.controller.js'
 
-router.get("/posts", (req, res) => {
-  res.send([])
-});
+router.get("/posts", getPosts);
 
 router.get("/posts/:id", (req, res) => {
   res.send("getting a post");
