@@ -18,6 +18,7 @@ export const getSinglePost = async (req, res) => {
 
   try {
     const post = await Post.findById(id);
+    if(!post) return res.sendStatus(400);
     res.status(200).send(post);
   } catch (error) {
     res.status(404).json({
