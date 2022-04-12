@@ -32,6 +32,8 @@ export const postPost = async (req, res) => {
 
   try {
     const post = new Post({ title, description });
+    if (title == "" || description == "")
+      res.status(400).json({ message: "Missing fields" });
     await post.save();
     console.log(post);
     res.status(200).json({
@@ -52,6 +54,7 @@ export const updatePost = async (req, res) => {
 
   try {
     const post = await Post.findByIdAndUpdate(id, updatedPost, { new: true });
+    if (!post) return res.status(400).json({ message: "Post not found" });
     res.status(200).json({
       message: "Post updated successfully",
       post,
@@ -69,6 +72,8 @@ export const deletePost = async (req, res) => {
 
   try {
     const deletedPost = await Post.findByIdAndDelete(id);
+    if (!deletedPost)
+      return res.status(400).json({ message: "Post not found" });
     res.status(200).json({
       message: "Post deleted successfully",
       deletedPost,
