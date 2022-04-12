@@ -1,4 +1,5 @@
 import Post from "../models/Post.js";
+import { uploadImage } from "../libs/cloudinary.js";
 
 export const getPosts = async (req, res) => {
   try {
@@ -18,7 +19,7 @@ export const getSinglePost = async (req, res) => {
 
   try {
     const post = await Post.findById(id);
-    if(!post) return res.sendStatus(400);
+    if (!post) return res.sendStatus(400);
     res.status(200).send(post);
   } catch (error) {
     res.status(404).json({
@@ -30,6 +31,10 @@ export const getSinglePost = async (req, res) => {
 
 export const postPost = async (req, res) => {
   const { title, description } = req.body;
+  if (req.files.image) {
+    const result = await uploadImage(req.files.image.tempFilePath);
+    console.log(result);
+  }
 
   try {
     const post = new Post({ title, description });
