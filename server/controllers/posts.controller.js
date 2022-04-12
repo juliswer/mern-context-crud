@@ -1,13 +1,30 @@
 import Post from "../models/Post.js";
 
 export const getPosts = async (req, res) => {
-  const posts = await Post.find();
+  try {
+    const posts = await Post.find();
 
-  res.send(posts);
+    res.status(200).send(posts);
+  } catch (error) {
+    res.status(404).json({
+      message: "Something went wrong",
+      error,
+    });
+  }
 };
 
-export const getSinglePost = (req, res) => {
-  res.send("getting a post");
+export const getSinglePost = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const post = await Post.findById(id);
+    res.status(200).send(post);
+  } catch (error) {
+    res.status(404).json({
+      message: "Something went wrong",
+      error,
+    });
+  }
 };
 
 export const postPost = async (req, res) => {
@@ -47,6 +64,19 @@ export const updatePost = async (req, res) => {
   }
 };
 
-export const deletePost = (req, res) => {
-  res.send("deleting a post");
+export const deletePost = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedPost = await Post.findByIdAndDelete(id);
+    res.status(200).json({
+      message: "Post deleted successfully",
+      deletedPost,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: "Something went wrong",
+      error,
+    });
+  }
 };
