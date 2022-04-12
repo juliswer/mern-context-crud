@@ -30,16 +30,14 @@ export const getSinglePost = async (req, res) => {
 };
 
 export const postPost = async (req, res) => {
-  const { title, description } = req.body;
-  if (req.files.image) {
-    const result = await uploadImage(req.files.image.tempFilePath);
-    console.log(result);
-  }
-
+  
   try {
+    const { title, description } = req.body;
+    if (req.files.image) {
+      const result = await uploadImage(req.files.image.tempFilePath);
+      console.log(result);
+    }
     const post = new Post({ title, description });
-    if (title == "" || description == "")
-      res.status(400).json({ message: "Missing fields" });
     await post.save();
     console.log(post);
     res.status(200).json({
