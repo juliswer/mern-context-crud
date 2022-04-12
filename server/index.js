@@ -1,6 +1,9 @@
 import express from "express";
-const app = express();
 import postRoutes from './routes/posts.routes.js';
+import {connectDB} from './db.js'
+
+const app = express();
+connectDB()
 
 app.use(postRoutes)
 
