@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { context } from "../context/postContext";
+import {usePosts} from '../context/postContext'
 
 export function HomePage() {
-  const appContext = useContext(context);
-  console.log(appContext);
+  const context = usePosts();
+  console.log(context)
 
   return (
     <div>
