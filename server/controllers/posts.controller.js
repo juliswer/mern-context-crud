@@ -1,5 +1,6 @@
 import Post from "../models/Post.js";
 import { uploadImage } from "../libs/cloudinary.js";
+import fs from "fs-extra";
 
 export const getPosts = async (req, res) => {
   try {
@@ -30,16 +31,16 @@ export const getSinglePost = async (req, res) => {
 };
 
 export const postPost = async (req, res) => {
-  
   try {
     const { title, description } = req.body;
     let image;
     if (req.files.image) {
       const result = await uploadImage(req.files.image.tempFilePath);
+      await fs.remove(req.files.image.tempFilePath);
       image = {
         url: result.secure_url,
-        public_id: result.public_id
-      }
+        public_id: result.public_id,
+      };
       console.log(result);
     }
     const post = new Post({ title, description, image });
