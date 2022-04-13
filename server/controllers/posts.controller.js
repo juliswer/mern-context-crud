@@ -33,11 +33,16 @@ export const postPost = async (req, res) => {
   
   try {
     const { title, description } = req.body;
+    let image;
     if (req.files.image) {
       const result = await uploadImage(req.files.image.tempFilePath);
+      image = {
+        url: result.secure_url,
+        public_id: result.public_id
+      }
       console.log(result);
     }
-    const post = new Post({ title, description });
+    const post = new Post({ title, description, image });
     await post.save();
     console.log(post);
     res.status(200).json({
