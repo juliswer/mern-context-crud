@@ -1,8 +1,8 @@
-import {usePosts} from '../context/postContext'
+import { usePosts } from "../context/postContext";
 
 export function HomePage() {
   const context = usePosts();
-  console.log(context)
+  console.log(context);
 
   return (
     <div>
