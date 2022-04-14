@@ -64,7 +64,7 @@ function PostCard({ post }) {
         <img
           src={post.image.url}
           alt="user"
-          className="w-full h-full object-cover"
+          className="object-cover h-96 w-full"
         />
       )}
     </div>
