@@ -24,7 +24,7 @@ export const PostProvider = ({ children }) => {
 
   const createPost = async (post) => {
     try {
-      const {data} = await createPostRequest(post);
+      const { data } = await createPostRequest(post);
       setPosts([...posts, data.post]);
     } catch (error) {
       console.log(error);
