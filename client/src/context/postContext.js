@@ -13,7 +13,7 @@ export const PostProvider = ({ children }) => {
 
   const getPosts = async () => {
     const { data } = await getPostsRequest();
-    setPosts([]);
+    setPosts(data);
   };
 
   useEffect(() => {
