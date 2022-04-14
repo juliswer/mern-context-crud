@@ -42,25 +42,31 @@ function PostCard({ post }) {
 
   return (
     <div
-      className="bg-zinc-800 text-white rounded-md shadow-black hover:bg-zinc-700 hover:cursor-pointer"
+      className="bg-zinc-800 text-white rounded-md shadow-black hover:bg-zinc-700 hover:cursor-pointer max-w-[400px]"
       onClick={() => navigate(`/posts/${post._id}`)}
     >
       <div className="px-4 py-7">
         <div className="flex justify-between">
-          <p>{post.title}</p>
+          <h3>{post.title}</h3>
           <button
             className="bg-red-600 hover:bg-red-500 text-sm px-2 py-1 rounded-sm"
             onClick={(e) => {
               e.stopPropagation();
-              handleDelete(post._id)
+              handleDelete(post._id);
             }}
           >
             Delete
           </button>
         </div>
         <p>{post.description}</p>
-        {post.image && <img src={post.image.url} alt="user" />}
       </div>
+      {post.image && (
+        <img
+          src={post.image.url}
+          alt="user"
+          className="w-full h-full object-cover"
+        />
+      )}
     </div>
   );
 }
