@@ -22,7 +22,9 @@ export function HomePage() {
       <Link to="/new">Create New Post</Link>
       <div className="grid grid-cols-3 gap-2">
         {posts.map((post) => (
-          <PostCard key={post._id} post={post} />
+          <div>
+            <PostCard post={post} />
+          </div>
         ))}
       </div>
     </div>

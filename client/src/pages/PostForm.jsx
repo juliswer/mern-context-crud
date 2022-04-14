@@ -11,6 +11,7 @@ export function PostForm() {
   const [post, setPost] = useState({
     title: "",
     description: "",
+    image: null
   });
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export function PostForm() {
           }}
           enableReinitialize={true}
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, setFieldValue }) => (
             <Form onSubmit={handleSubmit}>
               <label
                 htmlFor="title"
@@ -82,6 +83,18 @@ export function PostForm() {
                 component="p"
                 name="description"
                 className="text-red-400 text-sm"
+              />
+              <label
+                htmlFor="image"
+                className="text-sm block font-bold text-gray-400"
+              >
+                Select File
+              </label>
+              <input 
+                type="file"
+                name="image"
+                onChange={(e) => setFieldValue('image', e.target.files[0])}
+                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
               />
               <button
                 type="submit"
