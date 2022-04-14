@@ -17,10 +17,10 @@ export function PostForm() {
     (async () => {
       if (params.id) {
         const res = await getPost(params.id);
-        console.log(res);
+        setPost(res)
       }
     })();
-  }, []);
+  }, [getPost, params.id]);
 
   return (
     <div>
@@ -34,6 +34,7 @@ export function PostForm() {
           await createPost(values);
           navigate("/");
         }}
+        enableReinitialize={true}
       >
         {({ handleSubmit }) => (
           <Form onSubmit={handleSubmit}>
