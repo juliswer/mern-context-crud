@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePosts } from "../context/postContext";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import * as Yup from "yup";
 
 export function PostForm() {
@@ -24,7 +24,11 @@ export function PostForm() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="bg-zinc-800 p-10 shadow-md shadow-black rounded-xl">
+      <div className="bg-zinc-800 p-10 shadow-md shadow-black rounded-2xl">
+        <header className="flex justify-between items-center py-4 text-white">
+          <h3 className="text-2xl">{params.id ? 'Update' : 'New'} Post</h3>
+          <Link to="/" className="text-gray-400 text-sm hover:text-gray-300">Go Back Home</Link>
+        </header>
         <Formik
           initialValues={post}
           validationSchema={Yup.object({
