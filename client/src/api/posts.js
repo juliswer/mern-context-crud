@@ -5,3 +5,8 @@ import axios from "axios";
 
 export const getPostsRequest = async () =>
   await axios.get("http://localhost:4000/posts");
+
+export const createPostRequest = async (post) => {
+  const { data } = await axios.post("http://localhost:4000/posts", post);
+  return data;
+}
