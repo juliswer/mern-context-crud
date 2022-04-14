@@ -44,11 +44,12 @@ export function PostForm() {
             } else {
               await createPost(values);
             }
+            actions.setSubmitting(false);
             navigate("/");
           }}
           enableReinitialize={true}
         >
-          {({ handleSubmit, setFieldValue }) => (
+          {({ handleSubmit, setFieldValue, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
               <label
                 htmlFor="title"
@@ -99,8 +100,9 @@ export function PostForm() {
               <button
                 type="submit"
                 className="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400"
+                disabled={isSubmitting}
               >
-                {params.id ? "Update" : "Save"}
+                {isSubmitting ? 'Loading...' : 'Submit'}
               </button>
             </Form>
           )}
