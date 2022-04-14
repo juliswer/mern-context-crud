@@ -12,6 +12,5 @@ export const createPostRequest = async (post) => {
 };
 
 export const deletePostRequest = async (id) => {
-  const { data } = await axios.delete(`http://localhost:4000/posts/${id}`);
-  return data;
+  await axios.delete(`http://localhost:4000/posts/${id}`);
 }
