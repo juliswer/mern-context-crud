@@ -52,7 +52,7 @@ export function PostForm() {
               <Field
                 name="title"
                 placeholder="title"
-                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
+                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full mb-4"
               />
               <ErrorMessage
                 component="p"
@@ -70,7 +70,7 @@ export function PostForm() {
                 component="textarea"
                 placeholder="description"
                 rows={3}
-                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
+                className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full mb-2"
               />
               <ErrorMessage
                 component="p"
