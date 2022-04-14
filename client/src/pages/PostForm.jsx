@@ -1,9 +1,11 @@
 import {usePosts} from '../context/postContext';
 import { Formik, Form, Field } from "formik";
+import {useNavigate} from 'react-router-dom';
 
 export function PostForm() {
 
   const {createPost} = usePosts();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -12,8 +14,9 @@ export function PostForm() {
           title: "",
           description: "",
         }}
-        onSubmit={(values, actions) => {
-          createPost(values)
+        onSubmit={async (values, actions) => {
+          await createPost(values)
+          navigate('/')
         }}
       >
         {({handleSubmit}) => (
