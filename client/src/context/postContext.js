@@ -40,7 +40,6 @@ export const PostProvider = ({ children }) => {
   const updatePost = async (id, post) => {
     const res = await updatePostRequest(id, post);
     setPosts(posts.filter((p) => p._id !== id).concat(res.post));
-    console.log(res)
   }
 
   useEffect(() => {
