@@ -4,7 +4,7 @@ import axios from "axios";
 // NOTE: IF YOU ARE DEPLOYING THIS APP, YOU MUST MAKE THE PRODUCTION_URL IN THE .ENV FILE. THEN YOU PASS IT TO THE AXIOS FUNCTION.
 
 export const getPostsRequest = async () =>
-  await axios.get("/posts");
+  await axios.get("http://localhost:4000/posts");
 
 export const createPostRequest = async (post) => {
   const form = new FormData();
@@ -13,7 +13,7 @@ export const createPostRequest = async (post) => {
     form.append(key, post[key]);
   }
 
-  return await axios.post("/posts", form, {
+  return await axios.post("http://localhost:4000/posts", form, {
     header: {
       "Content-Type": "multipart/form-data",
     },
@@ -21,15 +21,15 @@ export const createPostRequest = async (post) => {
 };
 
 export const deletePostRequest = async (id) => {
-  await axios.delete(`/posts/${id}`);
+  await axios.delete(`http://localhost:4000/posts/${id}`);
 };
 
 export const getPostRequest = async (id) => {
-  const { data } = await axios.get(`/posts/${id}`);
+  const { data } = await axios.get(`http://localhost:4000/posts/${id}`);
   return data;
 };
 
 export const updatePostRequest = async (id, post) => {
-  const { data } = await axios.put(`/posts/${id}`, post);
+  const { data } = await axios.put(`http://localhost:4000/posts/${id}`, post);
   return data;
 };
