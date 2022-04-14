@@ -5,7 +5,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import * as Yup from "yup";
 
 export function PostForm() {
-  const { createPost, getPost } = usePosts();
+  const { createPost, getPost, updatePost } = usePosts();
   const navigate = useNavigate();
   const params = useParams();
   const [post, setPost] = useState({
@@ -36,7 +36,11 @@ export function PostForm() {
             description: Yup.string().required("Description is required"),
           })}
           onSubmit={async (values, actions) => {
-            await createPost(values);
+            if(params.id) {
+              await updatePost(params.id, values);
+            } else {
+              await createPost(values);
+            }
             navigate("/");
           }}
           enableReinitialize={true}

@@ -19,3 +19,8 @@ export const getPostRequest = async (id) => {
   const { data } = await axios.get(`http://localhost:4000/posts/${id}`);
   return data;
 }
+
+export const updatePostRequest = async (id, post) => {
+  const { data } = await axios.put(`http://localhost:4000/posts/${id}`, post);
+  return data;
+}
