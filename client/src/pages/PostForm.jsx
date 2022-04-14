@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { usePosts } from "../context/postContext";
+import {AiOutlineLoading3Quarters} from 'react-icons/ai'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import * as Yup from "yup";
@@ -102,7 +103,9 @@ export function PostForm() {
                 className="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded mt-2 text-white focus:outline-none disabled:bg-indigo-400"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Loading...' : 'Submit'}
+                {isSubmitting ? (
+                  <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" />
+                ) : 'Submit'}
               </button>
             </Form>
           )}
