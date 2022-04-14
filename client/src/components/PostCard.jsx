@@ -15,8 +15,8 @@ function PostCard({ post }) {
           </p>
           <div>
             <button
-              className="bg-red-500 hover:bg-red-400 px-3 py-2 text-sm text-white rounded-sm mx-2"
-              onClick={() => {
+              className="bg-red-600 hover:bg-red-500 px-3 py-2 text-sm text-white rounded-sm mx-2"
+              onClick={(e) => {
                 deletePost(id);
                 toast.dismiss(t.id);
               }}
@@ -49,13 +49,17 @@ function PostCard({ post }) {
         <div className="flex justify-between">
           <p>{post.title}</p>
           <button
-            className="bg-red-600 text-sm px-2 py-1 rounded-sm"
-            onClick={() => handleDelete(post._id)}
+            className="bg-red-600 hover:bg-red-500 text-sm px-2 py-1 rounded-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(post._id)
+            }}
           >
             Delete
           </button>
         </div>
         <p>{post.description}</p>
+        {post.image && <img src={post.image.url} alt="user" />}
       </div>
     </div>
   );
