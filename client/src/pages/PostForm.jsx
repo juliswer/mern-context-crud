@@ -26,8 +26,10 @@ export function PostForm() {
     <div className="flex items-center justify-center">
       <div className="bg-zinc-800 p-10 shadow-md shadow-black rounded-2xl">
         <header className="flex justify-between items-center py-4 text-white">
-          <h3 className="text-2xl">{params.id ? 'Update' : 'New'} Post</h3>
-          <Link to="/" className="text-gray-400 text-sm hover:text-gray-300">Go Back Home</Link>
+          <h3 className="text-2xl">{params.id ? "Update" : "New"} Post</h3>
+          <Link to="/" className="text-gray-400 text-sm hover:text-gray-300">
+            Go Back Home
+          </Link>
         </header>
         <Formik
           initialValues={post}
@@ -36,7 +38,7 @@ export function PostForm() {
             description: Yup.string().required("Description is required"),
           })}
           onSubmit={async (values, actions) => {
-            if(params.id) {
+            if (params.id) {
               await updatePost(params.id, values);
             } else {
               await createPost(values);
