@@ -1,5 +1,6 @@
 import { usePosts } from "../context/postContext";
 import { VscEmptyWindow } from "react-icons/vsc";
+import { IoIosAddCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import PostCard from "../components/PostCard";
 import { AiOutlineLink } from "react-icons/ai";
@@ -27,7 +28,12 @@ export function HomePage() {
         <h1 className="text-3xl font-bold">
           Posts ({posts.length} {posts.length === 1 ? "Post" : "Posts"})
         </h1>
-        <Link to="/new">Create New Post</Link>
+        <Link
+          to="/new"
+          className="px-2 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl flex items-center"
+        >
+          Create New Post <IoIosAddCircleOutline className="ml-1" />
+        </Link>
       </header>
       <div className="grid grid-cols-3 gap-2">
         {posts.map((post) => (

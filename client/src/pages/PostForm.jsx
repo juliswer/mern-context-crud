@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { usePosts } from "../context/postContext";
-import {AiOutlineLoading3Quarters} from 'react-icons/ai'
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import * as Yup from "yup";
@@ -12,7 +12,7 @@ export function PostForm() {
   const [post, setPost] = useState({
     title: "",
     description: "",
-    image: null
+    image: null,
   });
 
   useEffect(() => {
@@ -92,10 +92,10 @@ export function PostForm() {
               >
                 Select File
               </label>
-              <input 
+              <input
                 type="file"
                 name="image"
-                onChange={(e) => setFieldValue('image', e.target.files[0])}
+                onChange={(e) => setFieldValue("image", e.target.files[0])}
                 className="px-3 py-2 focus:outline-none rounded bg-gray-600 text-white w-full"
               />
               <button
@@ -105,7 +105,9 @@ export function PostForm() {
               >
                 {isSubmitting ? (
                   <AiOutlineLoading3Quarters className="w-5 h-5 animate-spin" />
-                ) : 'Submit'}
+                ) : (
+                  "Submit"
+                )}
               </button>
             </Form>
           )}
